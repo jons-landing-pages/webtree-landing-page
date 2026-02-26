@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { staggerContainer, staggerItem } from "@/lib/animations";
@@ -6,19 +7,42 @@ import { staggerContainer, staggerItem } from "@/lib/animations";
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Subtle grid pattern */}
-      <div className="absolute inset-0 bg-grid opacity-40" />
+      {/* ── Background Layers ── */}
 
-      {/* Central glow */}
+      {/* 1. Subtle grid pattern */}
+      <div className="absolute inset-0 bg-grid opacity-30" />
+
+      {/* 2. Ghostly watermark logo */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <Image
+          src="/webtree-logo.png"
+          alt=""
+          width={600}
+          height={600}
+          className="h-[500px] sm:h-[550px] md:h-[600px] w-auto opacity-[0.04] animate-gentle-float select-none"
+          aria-hidden="true"
+        />
+      </div>
+
+      {/* 3. Central radial glow — warm gold */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse, rgba(20,184,166,0.06) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(201,169,110,0.05) 0%, transparent 70%)",
         }}
       />
 
-      {/* Content */}
+      {/* 4. Secondary teal glow — offset */}
+      <div
+        className="absolute top-[40%] left-[60%] -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(20,184,166,0.04) 0%, transparent 70%)",
+        }}
+      />
+
+      {/* ── Content ── */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         <motion.div
           variants={staggerContainer}
@@ -27,13 +51,13 @@ export default function Hero() {
           className="flex flex-col items-center"
         >
           {/* Logo mark */}
-          <motion.div variants={staggerItem} className="mb-8">
+          <motion.div variants={staggerItem} className="mb-10">
             <Image
               src="/webtree-logo.png"
               alt="WebTree Global"
-              width={120}
-              height={120}
-              className="h-24 sm:h-28 md:h-32 w-auto opacity-60"
+              width={140}
+              height={140}
+              className="h-[100px] sm:h-[120px] md:h-[140px] w-auto opacity-70"
               priority
             />
           </motion.div>
@@ -41,49 +65,50 @@ export default function Hero() {
           {/* Wordmark */}
           <motion.h1
             variants={staggerItem}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-[0.12em] uppercase text-text mb-2"
-            style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
+            className="text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] tracking-[0.08em] uppercase text-text/95 mb-2"
+            style={{ fontFamily: "var(--font-display)", fontWeight: 300 }}
           >
             WebTree
           </motion.h1>
 
+          {/* Sub-wordmark */}
           <motion.p
             variants={staggerItem}
-            className="text-2xl sm:text-3xl md:text-4xl tracking-[0.3em] uppercase text-muted mb-12"
-            style={{ fontFamily: "var(--font-display)", fontWeight: 200 }}
+            className="text-3xl sm:text-4xl md:text-5xl tracking-[0.35em] uppercase text-muted mb-16"
+            style={{ fontFamily: "var(--font-accent)", fontWeight: 300 }}
           >
             Global
           </motion.p>
 
-          {/* Divider */}
+          {/* Decorative divider with diamond */}
           <motion.div
             variants={staggerItem}
-            className="w-16 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent mb-12"
-          />
+            className="flex items-center justify-center gap-3 mb-16"
+          >
+            <span className="gradient-line w-[36px] shrink-0" />
+            <span className="block w-1.5 h-1.5 rotate-45 bg-accent/50 shrink-0" />
+            <span className="gradient-line w-[36px] shrink-0" />
+          </motion.div>
 
           {/* Tagline */}
           <motion.p
             variants={staggerItem}
-            className="text-sm sm:text-base tracking-[0.2em] uppercase text-muted max-w-lg"
-            style={{ fontFamily: "var(--font-body)", fontWeight: 300 }}
+            className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted"
+            style={{ fontFamily: "var(--font-accent)", fontWeight: 400 }}
           >
             Strategic Capital &middot; Systematic Execution
           </motion.p>
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* ── Scroll Indicator ── */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 0.8 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+        transition={{ delay: 2.5, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center"
       >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          className="w-px h-8 bg-gradient-to-b from-primary/40 to-transparent"
-        />
+        <div className="w-px h-10 animate-gentle-float bg-gradient-to-b from-accent/40 to-transparent" />
       </motion.div>
     </section>
   );

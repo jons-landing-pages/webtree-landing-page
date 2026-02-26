@@ -1,68 +1,85 @@
 "use client";
+
 import { motion } from "framer-motion";
 import { fadeIn, staggerContainer, staggerItem } from "@/lib/animations";
 
-const PRINCIPLES = [
-  { value: "Discipline", detail: "Systematic process over intuition" },
-  { value: "Alignment", detail: "Skin in the game, always" },
-  { value: "Compounding", detail: "Long-term value creation over short-term extraction" },
+const principles = [
+  {
+    number: "01",
+    title: "Discipline",
+    detail: "Systematic process over intuition. Every decision has a framework.",
+  },
+  {
+    number: "02",
+    title: "Alignment",
+    detail: "Skin in the game. Our capital alongside yours, always.",
+  },
+  {
+    number: "03",
+    title: "Compounding",
+    detail: "Long-term value creation. We don\u2019t optimise for quarters.",
+  },
 ];
 
 export default function Philosophy() {
   return (
-    <section className="relative py-32 sm:py-40">
-      <div className="section-glow" />
-
-      <div className="relative z-10 max-w-5xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-16 items-start">
-          {/* Left — statement */}
+    <section id="philosophy" className="py-32 sm:py-44">
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="grid md:grid-cols-2 gap-20 items-start">
+          {/* ── Left Column ── */}
           <motion.div
             {...fadeIn}
             initial="initial"
             whileInView="animate"
             viewport={{ once: true, margin: "-100px" }}
           >
-            <p className="text-xs tracking-[0.25em] uppercase text-accent/70 mb-4" style={{ fontFamily: "var(--font-body)" }}>
+            <p
+              className="text-[10px] tracking-[0.35em] uppercase text-primary/50 mb-6"
+              style={{ fontFamily: "var(--font-accent)" }}
+            >
               Philosophy
             </p>
+
             <h2
-              className="text-2xl sm:text-3xl text-text/90 leading-relaxed"
+              className="text-2xl sm:text-3xl leading-[1.5] text-text/85"
               style={{ fontFamily: "var(--font-display)", fontWeight: 300 }}
             >
-              We believe that consistent, disciplined capital allocation — not
-              speculation — is the foundation of enduring wealth.
+              We believe in the patient compounding of capital through
+              disciplined, systematic processes&nbsp;&mdash; not speculation.
             </h2>
           </motion.div>
 
-          {/* Right — principles */}
+          {/* ── Right Column ── */}
           <motion.div
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
-            viewport={{ once: true, margin: "-80px" }}
-            className="flex flex-col gap-6 pt-2"
+            viewport={{ once: true, margin: "-100px" }}
+            className="flex flex-col"
           >
-            {PRINCIPLES.map((p, i) => (
-              <motion.div
-                key={p.value}
-                variants={staggerItem}
-                className="flex items-start gap-5"
-              >
-                <span className="text-xs text-primary/30 mt-1 font-mono">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3
-                    className="text-sm tracking-[0.1em] uppercase text-text/80 mb-1"
-                    style={{ fontFamily: "var(--font-display)", fontWeight: 500 }}
-                  >
-                    {p.value}
-                  </h3>
-                  <p className="text-sm text-muted leading-relaxed">
-                    {p.detail}
+            {principles.map((principle, index) => (
+              <div key={principle.number}>
+                {index > 0 && (
+                  <div className="h-px bg-white/[0.03] my-6" />
+                )}
+
+                <motion.div variants={staggerItem}>
+                  <p className="text-xs font-mono text-accent/20">
+                    {principle.number}
                   </p>
-                </div>
-              </motion.div>
+
+                  <h3
+                    className="text-sm tracking-[0.15em] uppercase text-text/75 font-medium mt-2"
+                    style={{ fontFamily: "var(--font-accent)" }}
+                  >
+                    {principle.title}
+                  </h3>
+
+                  <p className="text-sm text-muted leading-relaxed mt-1.5">
+                    {principle.detail}
+                  </p>
+                </motion.div>
+              </div>
             ))}
           </motion.div>
         </div>

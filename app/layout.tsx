@@ -3,6 +3,7 @@ import "@/app/globals.css";
 import ClientNav from "@/components/ClientNav";
 import Footer from "@/components/Footer";
 import AmbientBg from "@/components/AmbientBg";
+import HexGrid from "@/components/HexGrid";
 
 export const metadata: Metadata = {
   title: {
@@ -47,12 +48,13 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
           rel="stylesheet"
         />
       </head>
       <body className="noise-overlay">
         <AmbientBg />
+        <HexGrid />
         <div className="relative z-10">
           <ClientNav />
           {children}
