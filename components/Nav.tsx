@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -39,17 +40,29 @@ export default function Nav() {
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-        {/* Logo — text-based wordmark */}
-        <Link href="/" className="shrink-0 group">
-          <span
-            className="text-lg tracking-[0.2em] uppercase text-text/90 group-hover:text-text transition-colors duration-300"
-            style={{ fontFamily: "var(--font-display)", fontWeight: 500 }}
-          >
-            WebTree
-          </span>
-          <span className="text-lg tracking-[0.2em] uppercase text-muted ml-1" style={{ fontFamily: "var(--font-display)", fontWeight: 300 }}>
-            Global
-          </span>
+        {/* Logo */}
+        <Link href="/" className="shrink-0 group flex items-center gap-3">
+          <Image
+            src="/webtree-logo.png"
+            alt=""
+            width={28}
+            height={28}
+            className="h-7 w-auto opacity-70 group-hover:opacity-90 transition-opacity duration-300"
+          />
+          <div className="flex items-baseline gap-1.5">
+            <span
+              className="text-base tracking-[0.2em] uppercase text-text/90 group-hover:text-text transition-colors duration-300"
+              style={{ fontFamily: "var(--font-display)", fontWeight: 500 }}
+            >
+              WebTree
+            </span>
+            <span
+              className="text-base tracking-[0.2em] uppercase text-muted"
+              style={{ fontFamily: "var(--font-display)", fontWeight: 300 }}
+            >
+              Global
+            </span>
+          </div>
         </Link>
 
         {/* Desktop links */}

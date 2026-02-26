@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
@@ -25,6 +26,18 @@ export default function Hero() {
           animate="animate"
           className="flex flex-col items-center"
         >
+          {/* Logo mark */}
+          <motion.div variants={staggerItem} className="mb-8">
+            <Image
+              src="/webtree-logo.png"
+              alt="WebTree Global"
+              width={120}
+              height={120}
+              className="h-24 sm:h-28 md:h-32 w-auto opacity-60"
+              priority
+            />
+          </motion.div>
+
           {/* Wordmark */}
           <motion.h1
             variants={staggerItem}
