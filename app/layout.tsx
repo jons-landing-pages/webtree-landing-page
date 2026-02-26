@@ -13,7 +13,8 @@ export const metadata: Metadata = {
   description:
     "Webtree Global Pte. Ltd. — Strategic capital allocation, technology, and venture partnerships. Singapore.",
   icons: {
-    icon: "/favicon.svg",
+    icon: "/webtree-logo.png",
+    apple: "/webtree-logo.png",
   },
   openGraph: {
     title: "WebTree Global",
